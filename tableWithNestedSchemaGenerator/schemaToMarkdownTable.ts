@@ -111,7 +111,7 @@ export default class SchemaToMarkdownTable {
                 const {html} = this.renderSchema(nestedObjectName, level + 1)
                 return renderMarkdown(html)
             }
-            
+
         }).filter(i => !!i)
         descriptionArr.push(...nestedObjectsHtml);
 
@@ -160,7 +160,7 @@ export default class SchemaToMarkdownTable {
                 const {html} = this.renderSchema(nestedObjectName, level + 1)
                 return renderMarkdown(html)
             }
-        } else if ('type' in items && items.type === 'object') {
+        } else if ('type' in items && (items as any).type === 'object') {
             descriptionArr.push('Array of:')
             const { html, relatedObjects } = this.renderSchema(items, level + 1)
             relatedObjectsNames.push(...relatedObjects)

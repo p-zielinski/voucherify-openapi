@@ -2,4 +2,4 @@ Example script to generate markdown tables describing selected objects that use 
 
 Cli :
 - `npm i` - install required dependencies
-- `npm run stat` - generate markdown files into `output` folder
+- `npm run start` - generate markdown files into `output` folder

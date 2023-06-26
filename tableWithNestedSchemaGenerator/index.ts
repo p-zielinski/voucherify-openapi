@@ -29,7 +29,7 @@ const objectsToDescribe = [
     `13_obj_validation_rule_assignment_object`,
     `14_obj_segment_object`,
     `15_res_track_custom_event`,
-    `18_res_list_consents_GET`, 
+    `18_res_list_consents_GET`,
     `17_obj_async_action_object`,
     `16_obj_export_object`,
     `20_obj_category_object`,
@@ -38,7 +38,7 @@ const objectsToDescribe = [
 
 
 (async () => {
-    const stm = new SchemaToMarkdownTable(openApi.components.schemas, RenderMode.List, ExamplesRenderedAs.PartOfDescription);
+    const stm = new SchemaToMarkdownTable(openApi.components.schemas, RenderMode.Nested, ExamplesRenderedAs.PartOfDescription);
     for(const objectName of objectsToDescribe){
         try{
             await fs.writeFile(`./output/${objectName}.md`, stm.render(objectName))
