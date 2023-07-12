@@ -36039,28 +36039,33 @@
             "type": "string",
             "description": "Type of async action.",
             "enum": [
+              "CAMPAIGN.UPDATE",
               "CAMPAIGN.VOUCHERS_IMPORT",
               "CAMPAIGN.VOUCHERS_IMPORT_CSV",
               "CAMPAIGN.VOUCHERS_UPDATE",
               "CAMPAIGN.VOUCHERS_DELETE",
               "CAMPAIGN.VOUCHERS_GENERATE",
+              "CAMPAIGN.LOYALTY_TIERS_EXPIRATION_REFRESH",
               "CAMPAIGNS.METADATA_KEY_PURGE",
               "CUSTOMERS.IMPORT_CSV",
               "CUSTOMERS.BULK_UPDATE",
               "CUSTOMERS.METADATA_UPDATE",
               "CUSTOMERS.METADATA_KEY_PURGE",
+              "LOYALTY_TIERS.METADATA_KEY_PURGE",
+              "ORDER_ITEMS.METADATA_KEY_PURGE",
+              "ORDERS.METADATA_KEY_PURGE",
+              "ORDERS.IMPORT",
               "PRODUCTS.BULK_UPDATE",
               "PRODUCTS.METADATA_UPDATE",
               "PRODUCTS.METADATA_KEY_PURGE",
               "PRODUCTS.IMPORT_CSV",
               "SKUS.IMPORT_CSV",
+              "PROMOTION_TIERS.METADATA_KEY_PURGE",
               "VOUCHERS.IMPORT",
               "VOUCHERS.IMPORT_CSV",
               "VOUCHERS.BULK_UPDATE",
               "VOUCHERS.METADATA_UPDATE",
-              "VOUCHERS.METADATA_KEY_PURGE",
-              "ORDERS.IMPORT",
-              "ORDERS.METADATA_KEY_PURGE"
+              "VOUCHERS.METADATA_KEY_PURGE"
             ]
           },
           "status": {
@@ -36246,20 +36251,28 @@
                   "type": "string",
                   "description": "Type of async action.",
                   "enum": [
+                    "CAMPAIGN.UPDATE",
                     "CAMPAIGN.VOUCHERS_IMPORT",
                     "CAMPAIGN.VOUCHERS_IMPORT_CSV",
                     "CAMPAIGN.VOUCHERS_UPDATE",
                     "CAMPAIGN.VOUCHERS_DELETE",
                     "CAMPAIGN.VOUCHERS_GENERATE",
+                    "CAMPAIGN.LOYALTY_TIERS_EXPIRATION_REFRESH",
+                    "CAMPAIGNS.METADATA_KEY_PURGE",
                     "CUSTOMERS.IMPORT_CSV",
                     "CUSTOMERS.BULK_UPDATE",
                     "CUSTOMERS.METADATA_UPDATE",
                     "CUSTOMERS.METADATA_KEY_PURGE",
+                    "LOYALTY_TIERS.METADATA_KEY_PURGE",
+                    "ORDER_ITEMS.METADATA_KEY_PURGE",
+                    "ORDERS.METADATA_KEY_PURGE",
+                    "ORDERS.IMPORT",
                     "PRODUCTS.BULK_UPDATE",
                     "PRODUCTS.METADATA_UPDATE",
                     "PRODUCTS.METADATA_KEY_PURGE",
                     "PRODUCTS.IMPORT_CSV",
                     "SKUS.IMPORT_CSV",
+                    "PROMOTION_TIERS.METADATA_KEY_PURGE",
                     "VOUCHERS.IMPORT",
                     "VOUCHERS.IMPORT_CSV",
                     "VOUCHERS.BULK_UPDATE",
@@ -42857,7 +42870,7 @@
                       "key": "value"
                     }
                   }
-                },  
+                },
                 "Qualify product using product_id": {
                   "value": {
                     "customer": {
