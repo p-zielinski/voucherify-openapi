@@ -20,6 +20,7 @@
 - RewardsAssignmentObject
 - LoyaltyTierRewardRewardObject
 - RewardsListAssignmentsResponse
+- GetRewardAssignmentsResponse
 
 
 **Endpoints changes**
@@ -36,6 +37,9 @@
 - `/v1/loyalties/{campaignId}/tiers/{tierId}/rewards`
     - PUT
         - Response schema was replaced with `ListLoyaltyTierRewardResponse`
+- `/v1/loyalties/{campaignId}/rewards/{assignmentId}`
+    - GET
+        - Response schema was replaced with  `GetRewardAssignmentsResponse`
 
 ## 20230823 - New Endpoints
 

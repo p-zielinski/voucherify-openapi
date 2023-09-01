@@ -39673,6 +39673,13 @@
           }
         }
       },
+      "GetRewardAssignmentsResponse": {
+        "$ref": "#/components/schemas/RewardsAssignmentObject",
+        "x-stoplight": {
+          "id": "389ncr4ntsdmk"
+        },
+        "title": "GetRewardAssignmentsResponse"
+      },
       "a_req_importCSV": {
         "type": "object",
         "title": "Import CSV file",
@@ -68374,7 +68381,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/4_obj_reward_assignment_object"
+                  "$ref": "#/components/schemas/GetRewardAssignmentsResponse"
                 },
                 "examples": {
                   "Example": {
