@@ -39165,6 +39165,514 @@
           }
         }
       },
+      "ListLoyaltyTierRewardResponse": {
+        "title": "ListLoyaltyTierRewardResponse",
+        "x-stoplight": {
+          "id": "j0lheb3ktkm5a"
+        },
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "default": "list",
+            "pattern": "list"
+          },
+          "data_ref": {
+            "type": "string",
+            "default": "data",
+            "pattern": "data"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoyaltyTierRewardObject"
+            }
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "LoyaltyTierRewardObject": {
+        "title": "LoyaltyTierRewardObject",
+        "x-stoplight": {
+          "id": "26vl8qpoicjr2"
+        },
+        "type": "object",
+        "properties": {
+          "reward": {
+            "$ref": "#/components/schemas/LoyaltyTierRewardRewardObject"
+          },
+          "assignment": {
+            "$ref": "#/components/schemas/RewardsAssignmentObject"
+          },
+          "object": {
+            "type": "string",
+            "default": "loyalty_tier_reward",
+            "pattern": "loyalty_tier_reward"
+          }
+        }
+      },
+      "LoyaltyTierRewardRewardObjectCommon": {
+        "title": "LoyaltyTierRewardRewardObjectCommon",
+        "x-stoplight": {
+          "id": "36d675faln16s"
+        },
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "redeemed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "stock": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "image_url": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "object": {
+            "type": "string",
+            "default": "reward",
+            "pattern": "reward"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "redeemed",
+          "stock",
+          "created_at",
+          "updated_at",
+          "metadata",
+          "object"
+        ]
+      },
+      "LoyaltyTierRewardRewardCampaignObject": {
+        "title": "LoyaltyTierRewardRewardCampaignObject",
+        "x-stoplight": {
+          "id": "mjhjqy3ibcfqs"
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "default": "CAMPAIGN",
+            "pattern": "CAMPAIGN"
+          },
+          "parameters": {
+            "type": "object",
+            "required": [
+              "campaign"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "campaign": {
+                "$ref": "#/components/schemas/RewardParametersCampaign"
+              }
+            }
+          }
+        },
+        "required": [
+          "type",
+          "parameters"
+        ]
+      },
+      "LoyaltyTierRewardRewardCoinObject": {
+        "title": "LoyaltyTierRewardRewardCoinObject",
+        "x-stoplight": {
+          "id": "evq6t2s9437x8"
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "default": "COIN",
+            "pattern": "COIN"
+          },
+          "parameters": {
+            "type": "object",
+            "required": [
+              "coin"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "coin": {
+                "$ref": "#/components/schemas/RewardParametersCoin"
+              }
+            }
+          }
+        },
+        "required": [
+          "type",
+          "parameters"
+        ]
+      },
+      "LoyaltyTierRewardRewardMaterialObject": {
+        "title": "LoyaltyTierRewardRewardMaterialObject",
+        "x-stoplight": {
+          "id": "7iri6y1isszw4"
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "default": "MATERIAL",
+            "pattern": "MATERIAL"
+          },
+          "parameters": {
+            "type": "object",
+            "required": [
+              "product"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "product": {
+                "$ref": "#/components/schemas/RewardParametersProduct"
+              }
+            }
+          }
+        },
+        "required": [
+          "type",
+          "parameters"
+        ]
+      },
+      "RewardParametersCampaign": {
+        "title": "RewardParametersCampaign",
+        "x-stoplight": {
+          "id": "bpe3tx6tf9aa9"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ]
+      },
+      "RewardParametersCoin": {
+        "title": "RewardParametersCoin",
+        "x-stoplight": {
+          "id": "9g8jx9otoles1"
+        },
+        "type": "object",
+        "properties": {
+          "exchange_ratio": {
+            "type": "integer"
+          },
+          "points_ratio": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "exchange_ratio",
+          "points_ratio"
+        ]
+      },
+      "RewardParametersProduct": {
+        "title": "RewardParametersProduct",
+        "x-stoplight": {
+          "id": "acvh6ilze0kpe"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sku_id": {
+            "type": "string"
+          }
+        }
+      },
+      "RewardsAssignmentObjectCommon": {
+        "title": "RewardsAssignmentObjectCommon",
+        "x-stoplight": {
+          "id": "yr7ftwh6zikzw"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "reward_id": {
+            "type": "string"
+          },
+          "related_object_id": {
+            "type": "string"
+          },
+          "related_object_type": {
+            "type": "string",
+            "default": "campaign",
+            "pattern": "campaign"
+          },
+          "parameters": {
+            "type": "object",
+            "required": [
+              "loyalty"
+            ],
+            "properties": {
+              "loyalty": {
+                "type": "object",
+                "properties": {
+                  "points": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "default": "reward_assignment",
+            "pattern": "reward_assignment"
+          }
+        },
+        "required": [
+          "id",
+          "reward_id",
+          "related_object_id",
+          "related_object_type",
+          "parameters",
+          "created_at",
+          "object"
+        ]
+      },
+      "RewardsCreateAssignmentResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RewardsAssignmentObjectCommon"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "updated_at": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "updated_at"
+            ]
+          }
+        ]
+      },
+      "RewardsUpdateAssignment": {
+        "title": "RewardsUpdateAssignment",
+        "x-stoplight": {
+          "id": "uglgonnyafnuh"
+        },
+        "type": "object",
+        "properties": {
+          "campaign": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "loyalty": {
+                "type": "object",
+                "properties": {
+                  "points": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "RewardsCreateAssignment": {
+        "title": "RewardsCreateAssignment",
+        "x-stoplight": {
+          "id": "1ebwsjl6awgx7"
+        },
+        "type": "object",
+        "properties": {
+          "campaign": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object",
+            "required": [
+              "loyalty"
+            ],
+            "properties": {
+              "loyalty": {
+                "type": "object",
+                "properties": {
+                  "points": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "campaign",
+          "parameters"
+        ]
+      },
+      "RewardsUpdateAssignmentResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RewardsAssignmentObjectCommon"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "updated_at"
+            ]
+          }
+        ]
+      },
+      "RewardsAssignmentObject": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RewardsAssignmentObjectCommon"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "updated_at": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "updated_at"
+            ]
+          }
+        ]
+      },
+      "LoyaltyTierRewardRewardObject": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/LoyaltyTierRewardRewardObjectCommon"
+          },
+          {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LoyaltyTierRewardRewardCampaignObject"
+              },
+              {
+                "$ref": "#/components/schemas/LoyaltyTierRewardRewardCoinObject"
+              },
+              {
+                "$ref": "#/components/schemas/LoyaltyTierRewardRewardMaterialObject"
+              }
+            ]
+          }
+        ],
+        "title": "LoyaltyTierRewardRewardObject"
+      },
+      "RewardsListAssignmentsResponse": {
+        "title": "RewardsListAssignmentsResponse",
+        "x-stoplight": {
+          "id": "pyat5qnqa4um2"
+        },
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RewardsAssignmentObject"
+            }
+          },
+          "object": {
+            "type": "string",
+            "default": "list",
+            "pattern": "list"
+          },
+          "data_ref": {
+            "type": "string",
+            "default": "data",
+            "pattern": "data"
+          }
+        }
+      },
       "a_req_importCSV": {
         "type": "object",
         "title": "Import CSV file",
@@ -49194,7 +49702,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/4_res_list_reward_assignments"
+                  "$ref": "#/components/schemas/RewardsListAssignmentsResponse"
                 },
                 "examples": {
                   "Example": {
@@ -49282,7 +49790,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/4_req_create_reward_assignment"
+                "$ref": "#/components/schemas/RewardsCreateAssignmentResponse"
               },
               "examples": {
                 "Example": {
@@ -49451,7 +49959,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/4_req_update_reward_assignment"
+                "$ref": "#/components/schemas/RewardsUpdateAssignmentResponse"
               },
               "examples": {
                 "Example": {
@@ -70869,7 +71377,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/8_res_list_loyalty_tier_rewards"
+                  "$ref": "#/components/schemas/ListLoyaltyTierRewardResponse"
                 },
                 "examples": {
                   "Example": {
