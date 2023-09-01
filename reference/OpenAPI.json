@@ -49790,7 +49790,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RewardsCreateAssignmentResponse"
+                "$ref": "#/components/schemas/RewardsCreateAssignment"
               },
               "examples": {
                 "Example": {
@@ -49813,7 +49813,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/4_obj_reward_assignment_object"
+                  "$ref": "#/components/schemas/RewardsCreateAssignmentResponse"
                 },
                 "examples": {
                   "Example": {
@@ -49959,7 +49959,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RewardsUpdateAssignmentResponse"
+                "$ref": "#/components/schemas/RewardsUpdateAssignment"
               },
               "examples": {
                 "Example": {
@@ -49981,7 +49981,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/4_obj_reward_assignment_object"
+                  "$ref": "#/components/schemas/RewardsUpdateAssignmentResponse"
                 },
                 "examples": {
                   "Example": {

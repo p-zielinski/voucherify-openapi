@@ -1,5 +1,42 @@
 # Changelog
 
+## 20230901 - New schemas
+
+**Added schemas**
+- ListLoyaltyTierRewardResponse
+- LoyaltyTierRewardObject
+- LoyaltyTierRewardRewardObjectCommon
+- LoyaltyTierRewardRewardCampaignObject
+- LoyaltyTierRewardRewardCoinObject
+- LoyaltyTierRewardRewardMaterialObject
+- RewardParametersCampaign
+- RewardParametersCoin
+- RewardParametersProduct
+- RewardsAssignmentObjectCommon
+- RewardsCreateAssignmentResponse
+- RewardsUpdateAssignment
+- RewardsCreateAssignment
+- RewardsUpdateAssignmentResponse
+- RewardsAssignmentObject
+- LoyaltyTierRewardRewardObject
+- RewardsListAssignmentsResponse
+
+
+**Endpoints changes**
+- `/v1/rewards/{rewardId}/assignments`
+    - GET
+        - Response schema was replaced with `RewardsListAssignmentsResponse`
+    - POST
+        - Request parameters schema was replaced with `RewardsCreateAssignment`
+        - Response schema was replaced with `RewardsCreateAssignmentResponse`
+- `/v1/rewards/{rewardId}/assignments/{assignmentId}`
+    - PUT
+        - Request parameters schema was replaced with `RewardsUpdateAssignment`
+        - Response schema was replaced with `RewardsUpdateAssignmentResponse`
+- `/v1/loyalties/{campaignId}/tiers/{tierId}/rewards`
+    - PUT
+        - Response schema was replaced with `ListLoyaltyTierRewardResponse`
+
 ## 20230823 - New Endpoints
 
 ### Introduced new endpoints and related object schemas
