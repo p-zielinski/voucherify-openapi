@@ -40954,22 +40954,7 @@
         ]
       },
       "UpdateCategoryRequest": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CreateCategory"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "categoryId": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "categoryId"
-            ]
-          }
-        ]
+        "$ref": "#/components/schemas/CreateCategory"
       },
       "ResponseUpdateCategory": {
         "allOf": [
