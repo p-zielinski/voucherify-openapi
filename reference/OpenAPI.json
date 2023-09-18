@@ -41161,6 +41161,85 @@
           "source_ids",
           "metadata"
         ]
+      },
+      "ApplicableToResultList": {
+        "title": "ApplicableToResultList",
+        "x-stoplight": {
+          "id": "nycsu2fk2bzla"
+        },
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "default": "list"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicableTo"
+            }
+          }
+        },
+        "required": [
+          "object",
+          "total",
+          "data"
+        ]
+      },
+      "ApplicableTo": {
+        "title": "ApplicableTo",
+        "x-stoplight": {
+          "id": "7smhputeyduc9"
+        },
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "product",
+              "sku",
+              "products_collection"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "strict": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "price_formula": {
+            "type": "integer"
+          },
+          "effect": {
+            "$ref": "#/components/schemas/ApplicableToEffect"
+          }
+        },
+        "required": [
+          "object",
+          "id",
+          "strict",
+          "effect"
+        ]
+      },
+      "ApplicableToEffect": {
+        "type": "string",
+        "enum": [
+          "APPLY_TO_EVERY",
+          "APPLY_TO_CHEAPEST",
+          "APPLY_TO_MOST_EXPENSIVE"
+        ]
       }
     },
     "examples": {
