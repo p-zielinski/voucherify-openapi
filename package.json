@@ -3,7 +3,8 @@
   "scripts": {
     "update-md-tables-in-doc": "ts-node ./scripts/update-md-tables-in-doc.ts",
     "build-md-tables-from-openapi": "ts-node ./scripts/build-md-tables-from-openapi.ts",
-    "readme-fix-reference-docs": "ts-node ./scripts/readme-fix-reference-docs.ts",
+    "readme-fix-docs": "ts-node scripts/readme-fix-docs.ts",
+    "readme-upload-images-docs": "ts-node scripts/readme-upload-images-docs",
     "remove-stoplight-tags-from-openapi": "ts-node ./scripts/remove-stoplight-tags-from-openapi.ts",
     "manage-project": "ts-node ./scripts/manage-project.ts"
   },

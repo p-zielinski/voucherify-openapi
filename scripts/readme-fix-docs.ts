@@ -6,7 +6,7 @@ import minimist from 'minimist';
 dotenv.config();
 const { version } = minimist(process.argv.slice(2));
 
-const readmeFixReferenceDocs = async () => {
+const readmeFixDocs = async () => {
   if (!version) {
     console.log(
         "`version` argument was not provided :/, next time try add `-- --version=************` at the end of file execution command"
@@ -108,4 +108,4 @@ const asyncMap = (arr, asyncFn) => {
 
 
 
-readmeFixReferenceDocs()
+readmeFixDocs()
