@@ -39240,41 +39240,111 @@
           }
         }
       },
-      "LoyaltiesGetEarningRuleResponseBody": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/EarningRuleBase"
+      "LoyaltiesGetPointsExpirationResponseBody": {
+        "title": "Loyalties Get Points Expiration Response Body",
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "pattern": "list",
+            "enum": [
+              "list"
+            ],
+            "description": "The type of object represented by JSON. This object stores information about loyalty points expiration buckets in a dictionary."
           },
-          {
-            "type": "object",
-            "properties": {
-              "validation_rule_id": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "description": "A unique validation rule identifier assigned by the Voucherify API. The validation rule is verified before points are added to the balance."
+          "data_ref": {
+            "type": "string",
+            "pattern": "data",
+            "enum": [
+              "data"
+            ],
+            "description": "Identifies the name of the attribute that contains the array of loyalty points expiration bucket objects."
+          },
+          "data": {
+            "type": "array",
+            "description": "Contains array of loyalty points expiration buckets.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique loyalty points bucket ID."
+                },
+                "voucher_id": {
+                  "type": "string",
+                  "description": "Unique parent loyalty card ID."
+                },
+                "campaign_id": {
+                  "type": "string",
+                  "description": "\nUnique parent campaign ID."
+                },
+                "bucket": {
+                  "type": "object",
+                  "required": [
+                    "total_points"
+                  ],
+                  "description": "Defines the number of points stored in the given loyalty points bucket.",
+                  "properties": {
+                    "total_points": {
+                      "type": "integer",
+                      "description": "Total number of points in the loyalty points bucket."
+                    }
+                  }
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Timestamp representing the date and time when the loyalty points bucket object was created in ISO 8601 format.",
+                  "format": "date-time"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Loyalty points bucket point status."
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date when the number of points defined in the bucket object are due to expire."
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp representing the date and time when the loyalty points bucket object was updated in ISO 8601 format."
+                },
+                "object": {
+                  "type": "string",
+                  "pattern": "loyalty_points_bucket",
+                  "enum": [
+                    "loyalty_points_bucket"
+                  ],
+                  "description": "The type of object represented by JSON. This object stores information about the loyalty points bucket."
+                }
               },
-              "updated_at": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date-time",
-                "description": "Timestamp representing the date and time when the earning rule was last updated in ISO 8601 format."
-              },
-              "active": {
-                "type": "boolean",
-                "description": "A flag to toggle the earning rule on or off. You can disable an earning rule even though it's within the active period defined by the start_date and expiration_date of the campaign or the earning rule's own start_date and expiration_date.\n\n- `true` indicates an active earning rule\n- `false` indicates an inactive earning rule"
-              }
-            },
-            "required": [
-              "validation_rule_id",
-              "updated_at",
-              "active"
-            ]
+              "required": [
+                "id",
+                "voucher_id",
+                "campaign_id",
+                "bucket",
+                "created_at",
+                "status",
+                "expires_at",
+                "object"
+              ]
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of point expiration buckets."
           }
+        },
+        "required": [
+          "object",
+          "data_ref",
+          "data",
+          "total"
         ]
+      },
+      "LoyaltiesGetEarningRuleResponseBody": {
+        "$ref": "#/components/schemas/EarningRule"
       },
       "LoyaltiesEnableEarningRulesResponseBody": {
         "allOf": [
@@ -39336,6 +39406,9 @@
       },
       "EarningRuleBase": {
         "title": "EarningRuleBase",
+        "x-stoplight": {
+          "id": "w4ci1ljqva0r1"
+        },
         "type": "object",
         "properties": {
           "id": {
@@ -39473,6 +39546,9 @@
       },
       "EarningRuleEvent": {
         "title": "EarningRuleEvent",
+        "x-stoplight": {
+          "id": "6vxql7fnzg2zp"
+        },
         "type": "string",
         "enum": [
           "order.paid",
@@ -39487,6 +39563,9 @@
       },
       "EarningRuleFixed": {
         "title": "Define fixed amount of points",
+        "x-stoplight": {
+          "id": "r5o8m0sdli7fq"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -39518,6 +39597,9 @@
       },
       "EarningRuleProportionalOrderAmount": {
         "title": "Order Amount",
+        "x-stoplight": {
+          "id": "1z7lk7z1lp5af"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -39569,6 +39651,9 @@
       },
       "EarningRuleProportionalOrderTotalAmount": {
         "title": "Order Total Amount",
+        "x-stoplight": {
+          "id": "ekudxr430edgk"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -39620,6 +39705,9 @@
       },
       "EarningRuleProportionalOrderMetadata": {
         "title": "Order Metadata",
+        "x-stoplight": {
+          "id": "4ccw4gz8b47u5"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -39677,6 +39765,9 @@
       },
       "EarningRuleProportionalOrderItemsQuantity": {
         "title": "Order Items Quantity",
+        "x-stoplight": {
+          "id": "pqsn9otpzyot9"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -39743,6 +39834,9 @@
       },
       "EarningRuleProportionalOrderItemsAmount": {
         "title": "Order Items Amount",
+        "x-stoplight": {
+          "id": "8pg4o23daepkb"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -39809,6 +39903,9 @@
       },
       "EarningRuleProportionalOrderItemsSubtotalAmount": {
         "title": "Order Items Subtotal Amount",
+        "x-stoplight": {
+          "id": "duxy5qw36h5ph"
+        },
         "type": "object",
         "properties": {
           "type": {
@@ -40044,109 +40141,6 @@
             "type": "integer"
           }
         }
-      },
-      "LoyaltiesGetPointsExpirationResponseBody": {
-        "title": "Loyalties Get Points Expiration Response Body",
-        "type": "object",
-        "properties": {
-          "object": {
-            "type": "string",
-            "pattern": "list",
-            "enum": [
-              "list"
-            ],
-            "description": "The type of object represented by JSON. This object stores information about loyalty points expiration buckets in a dictionary."
-          },
-          "data_ref": {
-            "type": "string",
-            "pattern": "data",
-            "enum": [
-              "data"
-            ],
-            "description": "Identifies the name of the attribute that contains the array of loyalty points expiration bucket objects."
-          },
-          "data": {
-            "type": "array",
-            "description": "Contains array of loyalty points expiration buckets.",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "Unique loyalty points bucket ID."
-                },
-                "voucher_id": {
-                  "type": "string",
-                  "description": "Unique parent loyalty card ID."
-                },
-                "campaign_id": {
-                  "type": "string",
-                  "description": "\nUnique parent campaign ID."
-                },
-                "bucket": {
-                  "type": "object",
-                  "required": [
-                    "total_points"
-                  ],
-                  "description": "Defines the number of points stored in the given loyalty points bucket.",
-                  "properties": {
-                    "total_points": {
-                      "type": "integer",
-                      "description": "Total number of points in the loyalty points bucket."
-                    }
-                  }
-                },
-                "created_at": {
-                  "type": "string",
-                  "description": "Timestamp representing the date and time when the loyalty points bucket object was created in ISO 8601 format.",
-                  "format": "date-time"
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Loyalty points bucket point status."
-                },
-                "expires_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Date when the number of points defined in the bucket object are due to expire."
-                },
-                "updated_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Timestamp representing the date and time when the loyalty points bucket object was updated in ISO 8601 format."
-                },
-                "object": {
-                  "type": "string",
-                  "pattern": "loyalty_points_bucket",
-                  "enum": [
-                    "loyalty_points_bucket"
-                  ],
-                  "description": "The type of object represented by JSON. This object stores information about the loyalty points bucket."
-                }
-              },
-              "required": [
-                "id",
-                "voucher_id",
-                "campaign_id",
-                "bucket",
-                "created_at",
-                "status",
-                "expires_at",
-                "object"
-              ]
-            }
-          },
-          "total": {
-            "type": "integer",
-            "description": "Total number of point expiration buckets."
-          }
-        },
-        "required": [
-          "object",
-          "data_ref",
-          "data",
-          "total"
-        ]
       },
       "LoyaltiesListCardTransactionsRequestQuery": {
         "title": "Loyalties List Card Transactions Request Query",
@@ -40774,25 +40768,32 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique reward assignment ID, assigned by Voucherify."
           },
           "reward_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Associated reward ID."
           },
           "related_object_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Related object ID to which the reward was assigned."
           },
           "related_object_type": {
-            "type": "string"
+            "type": "string",
+            "description": "Related object type to which the reward was assigned."
           },
           "parameters": {
             "type": "object",
+            "description": "Defines the cost of the reward.",
             "properties": {
               "loyalty": {
                 "type": "object",
+                "description": "Defines the equivalent points value of the reward.",
                 "properties": {
                   "points": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points required to redeem the reward."
                   }
                 },
                 "required": [
@@ -40802,13 +40803,18 @@
             }
           },
           "created_at": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp representing the date and time when the reward assignment was created in ISO 8601 format.",
+            "format": "date-time"
           },
           "updated_at": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp representing the date and time when the reward assignment was updated in ISO 8601 format.",
+            "format": "date-time"
           },
           "object": {
-            "type": "string"
+            "type": "string",
+            "description": "The type of object represented by the JSON. This object stores information about the reward assignment."
           }
         },
         "required": [
@@ -40819,44 +40825,55 @@
         ]
       },
       "Reward": {
-        "title": "Reward",
         "allOf": [
           {
             "type": "object",
             "properties": {
               "id": {
-                "type": "string"
+                "type": "string",
+                "description": "Unique reward ID, assigned by Voucherify."
               },
               "name": {
-                "type": "string"
+                "type": "string",
+                "description": "Reward name."
               },
               "stock": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Configurable for material rewards. The number of units of the product that you want to share as reward."
               },
               "redeemed": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Defines the number of already invoked (successful) reward redemptions."
               },
               "attributes": {
                 "type": "object",
+                "description": "These properties are configurable for material rewards.",
                 "properties": {
                   "image_url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The HTTPS URL pointing to the .png or .jpg file."
                   },
                   "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An arbitrary string that you can attach to a material reward."
                   }
                 }
               },
               "created_at": {
-                "type": "string"
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp representing the date and time when the reward was created in ISO 8601 format."
               },
               "updated_at": {
-                "type": "string"
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp representing the date and time when the reward was updated in ISO 8601 format."
               },
               "object": {
                 "type": "string",
                 "default": "reward",
-                "pattern": "reward"
+                "pattern": "reward",
+                "description": "The type of object represented by the JSON. This object stores information about the reward."
               }
             },
             "required": [
@@ -40870,6 +40887,20 @@
           }
         ]
       },
+      "RewardType": {
+        "title": "Reward Type",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/RewardTypeCampaign"
+          },
+          {
+            "$ref": "#/components/schemas/RewardTypeCoin"
+          },
+          {
+            "$ref": "#/components/schemas/RewardTypeCoin"
+          }
+        ]
+      },
       "RewardTypeCoin": {
         "title": "Reward Type Coin",
         "type": "object",
@@ -40878,25 +40909,30 @@
             "type": "string",
             "enum": [
               "COIN"
-            ]
+            ],
+            "description": "Reward type."
           },
           "parameters": {
             "type": "object",
             "required": [
               "coin"
             ],
+            "description": "Defines how the reward is generated.",
             "properties": {
               "coin": {
                 "type": "object",
                 "required": [
                   "exchange_ratio"
                 ],
+                "description": "Defines the ratio by mapping the number of loyalty points in points_ratio to a predefined cash amount in exchange_ratio.",
                 "properties": {
                   "exchange_ratio": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "The cash equivalent of the points defined in the points_ratio property."
                   },
                   "points_ratio": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of loyalty points that will map to the predefined cash amount defined by the exchange_ratio property."
                   }
                 }
               }
@@ -40916,13 +40952,15 @@
             "type": "string",
             "enum": [
               "MATERIAL"
-            ]
+            ],
+            "description": "Reward type."
           },
           "parameters": {
             "type": "object",
             "required": [
               "product"
             ],
+            "description": "Defines how the reward is generated.",
             "properties": {
               "product": {
                 "type": "object",
@@ -40930,15 +40968,18 @@
                   "id",
                   "sku"
                 ],
+                "description": "Contains information about the product given as a reward.",
                 "properties": {
                   "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique product ID, assigned by Voucherify."
                   },
                   "sku": {
                     "type": [
                       "string",
                       "null"
-                    ]
+                    ],
+                    "description": "Unique SKU ID, assigned by Voucherify, of the SKU given as a reward."
                   }
                 }
               }
@@ -40958,13 +40999,15 @@
             "type": "string",
             "enum": [
               "CAMPAIGN"
-            ]
+            ],
+            "description": "Reward type."
           },
           "parameters": {
             "type": "object",
             "required": [
               "campaign"
             ],
+            "description": "Defines how the reward is generated.",
             "properties": {
               "campaign": {
                 "type": "object",
@@ -40972,12 +41015,15 @@
                   "id",
                   "type"
                 ],
+                "description": "Objects stores information about the campaign related to the reward.",
                 "properties": {
                   "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique campaign ID, assigned by Voucherify."
                   },
                   "balance": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The incremental amout to be added to the current balance on the gift card. Value is multiplied by 100 to precisely represent 2 decimal places. For example, $100 amount is written as 10000."
                   },
                   "type": {
                     "type": "string",
@@ -40986,7 +41032,8 @@
                       "PROMOTION",
                       "GIFT_VOUCHERS",
                       "REFERRAL_PROGRAM"
-                    ]
+                    ],
+                    "description": "Campaign type."
                   }
                 }
               }
@@ -40996,20 +41043,6 @@
         "required": [
           "type",
           "parameters"
-        ]
-      },
-      "RewardType": {
-        "title": "Reward Type",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/RewardTypeCampaign"
-          },
-          {
-            "$ref": "#/components/schemas/RewardTypeCoin"
-          },
-          {
-            "$ref": "#/components/schemas/RewardTypeCoin"
-          }
         ]
       },
       "LoyaltiesAddOrRemoveCardBalanceResponseBody": {
@@ -41479,6 +41512,2196 @@
           "hierarchy",
           "created_at",
           "object"
+        ]
+      },
+      "ExportsCreateRequestBody": {
+        "anyOf": [
+          {
+            "title": "Export Vouchers",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "voucher"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportVoucherOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportVoucherFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportVoucherFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          },
+          {
+            "title": "Export Redemptions",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "redemption"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportRedemptionOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportRedemptionFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportRedemptionFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          },
+          {
+            "title": "Export Customers",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "customer"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportCustomerOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportCustomerFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportCustomerFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          },
+          {
+            "title": "Export Publications",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "publication"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportPublicationOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportPublicationFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportPublicationFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          },
+          {
+            "title": "Export Order",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "order"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportOrderOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportOrderFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportOrderFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          },
+          {
+            "title": "Export Points Expirations",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "points_expiration"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportPointsExpirationOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportPointsExpirationFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportPointsExpirationFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          },
+          {
+            "title": "Export Vouchers Transactions Expiration",
+            "properties": {
+              "exported_object": {
+                "type": "string",
+                "enum": [
+                  "voucher_transactions"
+                ],
+                "description": "The type of object to be exported."
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "$ref": "#/components/schemas/ExportVoucherTransactionsOrder",
+                    "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+                  },
+                  "fields": {
+                    "type": "array",
+                    "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                    "items": {
+                      "$ref": "#/components/schemas/ExportVoucherTransactionsFields"
+                    }
+                  },
+                  "filters": {
+                    "$ref": "#/components/schemas/ExportVoucherTransactionsFilters",
+                    "description": "Filter conditions."
+                  }
+                },
+                "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+              }
+            },
+            "required": [
+              "exported_object"
+            ]
+          }
+        ],
+        "type": "object"
+      },
+      "ExportBase": {
+        "title": "Export Base",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique export ID."
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "export"
+            ],
+            "description": "The type of object being represented. This object stores information about the export."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp representing the date and time when the export was scheduled in ISO 8601 format."
+          },
+          "status": {
+            "enum": [
+              "SCHEDULED",
+              "IN_PROGRESS",
+              "DONE",
+              "ERROR"
+            ],
+            "type": "string",
+            "description": "Status of the export. Informs you whether the export has already been completed, i.e. indicates whether the file containing the exported data has been generated."
+          },
+          "channel": {
+            "type": "string",
+            "description": "The channel through which the export was triggered."
+          },
+          "result": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "url"
+            ],
+            "description": "Contains the URL of the CSV file.",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the CSV file location. It contains the token used for authorization in the Download export method."
+              }
+            }
+          },
+          "user_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Identifies the specific user who initiated the export through the Voucherify Dashboard; returned when the channel value is WEBSITE."
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "created_at",
+          "status",
+          "result",
+          "user_id"
+        ]
+      },
+      "Export": {
+        "title": "Export",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ExportBase"
+          },
+          {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExportVoucher"
+              },
+              {
+                "$ref": "#/components/schemas/ExportRedemption"
+              },
+              {
+                "$ref": "#/components/schemas/ExportCustomer"
+              },
+              {
+                "$ref": "#/components/schemas/ExportPublication"
+              },
+              {
+                "$ref": "#/components/schemas/ExportOrder"
+              },
+              {
+                "$ref": "#/components/schemas/ExportPointsExpiration"
+              },
+              {
+                "$ref": "#/components/schemas/ExportVoucherTransactionsExpiration"
+              }
+            ]
+          }
+        ]
+      },
+      "ExportsCreateResponseBody": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique export ID."
+              },
+              "object": {
+                "type": "string",
+                "enum": [
+                  "export"
+                ],
+                "description": "The type of object being represented. This object stores information about the export."
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp representing the date and time when the export was scheduled in ISO 8601 format."
+              },
+              "status": {
+                "type": "string",
+                "description": "Status of the export. Informs you whether the export has already been completed, i.e. indicates whether the file containing the exported data has been generated.",
+                "enum": [
+                  "SCHEDULED"
+                ]
+              },
+              "channel": {
+                "type": "string",
+                "description": "The channel through which the export was triggered."
+              },
+              "result": {
+                "type": "null",
+                "description": "Contains the URL of the CSV file."
+              },
+              "user_id": {
+                "type": "string",
+                "description": "Identifies the specific user who initiated the export through the Voucherify Dashboard; returned when the channel value is WEBSITE."
+              }
+            },
+            "required": [
+              "id",
+              "object",
+              "created_at",
+              "status",
+              "result",
+              "user_id"
+            ]
+          },
+          {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExportVoucher"
+              },
+              {
+                "$ref": "#/components/schemas/ExportRedemption"
+              },
+              {
+                "$ref": "#/components/schemas/ExportCustomer"
+              },
+              {
+                "$ref": "#/components/schemas/ExportPublication"
+              },
+              {
+                "$ref": "#/components/schemas/ExportOrder"
+              },
+              {
+                "$ref": "#/components/schemas/ExportPointsExpiration"
+              },
+              {
+                "$ref": "#/components/schemas/ExportVoucherTransactionsExpiration"
+              }
+            ]
+          }
+        ],
+        "title": ""
+      },
+      "ExportVoucher": {
+        "title": "Export Vouchers",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "voucher"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportVoucherOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportVoucherFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportVoucherFilters",
+                "description": "Filter conditions."
+              }
+            }
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "FieldConditions": {
+        "title": "Field Conditions",
+        "type": "object",
+        "properties": {
+          "conditions": {
+            "$ref": "#/components/schemas/FiltersCondition",
+            "description": "Data filters used to narrow the data records to be returned in the result."
+          }
+        }
+      },
+      "FiltersCondition": {
+        "title": "Filters Condition",
+        "type": "object",
+        "properties": {
+          "$in": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$not_in": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$is": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$is_days_ago": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$is_days_in_future": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$is_not": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$has_value": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$is_unknown": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$contains": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$not_contain": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$starts_with": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$ends_with": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$more_than": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$less_than": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$more_than_ago": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$less_than_ago": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$more_than_future": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$less_than_future": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$more_than_equal": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$less_than_equal": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$after": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$before": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$count": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$count_less": {
+            "$ref": "#/components/schemas/Any"
+          },
+          "$count_more": {
+            "$ref": "#/components/schemas/Any"
+          }
+        }
+      },
+      "ExportVoucherFilters": {
+        "title": "Export Voucher Filters",
+        "type": "object",
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction",
+            "description": "Filter by conditions set on the junction parameter indicating how the conditions should be accounted for in the query. An AND is an all-inclusive logical operator, meaning the AND operator displays a record if ALL the conditions separated by AND are TRUE, while an OR operator displays a record if ANY of the conditions separated by OR is TRUE."
+          },
+          "code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "voucher_type": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "value": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "discount_type": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "campaign": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "category": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "start_date": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "expiration_date": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "gift_balance": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "loyalty_balance": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemption_quantity": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemption_count": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "active": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "qr_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "bar_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "is_referral_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "validity_timeframe_interval": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "validity_timeframe_duration": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "validity_day_of_week": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "discount_amount_limit": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "campaign_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "additional_info": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "discount_unit_type": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "discount_unit_effect": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_source_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "Junction": {
+        "title": "Junction",
+        "enum": [
+          "and",
+          "AND",
+          "or",
+          "OR"
+        ],
+        "type": "string"
+      },
+      "ExportRedemption": {
+        "title": "Export Redemptions",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "redemption"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportRedemptionOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportRedemptionFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportRedemptionFilters",
+                "description": "Filter conditions."
+              }
+            },
+            "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "ExportRedemptionFilters": {
+        "title": "Export Redemption Filters",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "object": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "date": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "voucher_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "campaign": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "promotion_tier_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_source_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_name": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "tracking_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "order_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "gift_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "loyalty_points": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "result": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "failure_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "failure_message": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "ExportCustomer": {
+        "title": "Export Customers",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "customer"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportCustomerOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportCustomerFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportCustomerFilters",
+                "description": "Filter conditions."
+              }
+            },
+            "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "ExportCustomerFilters": {
+        "title": "Export Customer Filters",
+        "type": "object",
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction"
+          },
+          "name": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "description": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "email": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "source_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "address_city": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "address_state": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "address_line_1": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "address_line_2": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "address_country": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "address_postal_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemptions_total_redeemed": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemptions_total_failed": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemptions_total_succeeded": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemptions_total_rolled_back": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemptions_total_rollback_failed": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "redemptions_total_rollback_succeeded": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "orders_total_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "orders_total_count": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "orders_average_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "orders_last_order_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "orders_last_order_date": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "loyalty_points": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "loyalty_referred_customers": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "phone": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "birthday": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "birthdate": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "ExportPublication": {
+        "title": "Export Publications",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "publication"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportPublicationOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportPublicationFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportPublicationFilters",
+                "description": "Filter conditions."
+              }
+            },
+            "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "ExportPublicationFilters": {
+        "title": "Export Publication Filters",
+        "type": "object",
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction"
+          },
+          "voucher_code": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_source_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "date": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "campaign": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "is_winner": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "ExportOrder": {
+        "title": "Export Orders",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "order"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportOrderOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportOrderFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportOrderFilters",
+                "description": "Filter conditions."
+              }
+            },
+            "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "ExportOrderFilters": {
+        "title": "Export Order Filters",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "source_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "discount_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "items_discount_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "total_discount_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "total_amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "customer_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "referrer_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "ExportPointsExpiration": {
+        "title": "Export Points Expirations",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "points_expiration"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportPointsExpirationOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportPointsExpirationFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportPointsExpirationFilters",
+                "description": "Filter conditions."
+              }
+            },
+            "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "ExportPointsExpirationFilters": {
+        "title": "Export Points Expiration Filters",
+        "type": "object",
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "campaign_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "voucher_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "points": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "expires_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "ExportVoucherTransactionsExpiration": {
+        "title": "Export Vouchers Transactions Expiration",
+        "type": "object",
+        "properties": {
+          "exported_object": {
+            "type": "string",
+            "enum": [
+              "voucher_transactions"
+            ],
+            "description": "The type of object to be exported."
+          },
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/ExportVoucherTransactionsOrder",
+                "description": "How the export is filtered, where the dash - preceding a sorting option means sorting in a descending order."
+              },
+              "fields": {
+                "type": "array",
+                "description": "Array of strings containing the data in the export. These fields define the headers in the CSV file.",
+                "items": {
+                  "$ref": "#/components/schemas/ExportVoucherTransactionsFields"
+                }
+              },
+              "filters": {
+                "$ref": "#/components/schemas/ExportVoucherTransactionsFilters",
+                "description": "Filter conditions."
+              }
+            },
+            "description": "List of available fields and filters that can be exported with an order along with the sorting order of the returned data."
+          }
+        },
+        "required": [
+          "exported_object",
+          "parameters"
+        ]
+      },
+      "ExportVoucherTransactionsFilters": {
+        "title": "Export Voucher Transactions Filters",
+        "type": "object",
+        "properties": {
+          "junction": {
+            "$ref": "#/components/schemas/Junction"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "campaign_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "voucher_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "type": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "source_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "source": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "balance": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "related_transaction_id": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/FieldConditions"
+          },
+          "details": {
+            "$ref": "#/components/schemas/FieldConditions"
+          }
+        }
+      },
+      "ExportsGetResponseBody": {
+        "$ref": "#/components/schemas/Export",
+        "title": ""
+      },
+      "ExportsListResponseBody": {
+        "title": "Exports List Response Body",
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The type of object represented by JSON. This object stores information about exports."
+          },
+          "data_ref": {
+            "type": "string",
+            "enum": [
+              "exports"
+            ],
+            "description": "Identifies the name of the attribute that contains the array of exports."
+          },
+          "exports": {
+            "type": "array",
+            "description": "An array of export objects.",
+            "items": {
+              "$ref": "#/components/schemas/Export"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of exports."
+          }
+        },
+        "required": [
+          "object",
+          "data_ref",
+          "exports",
+          "total"
+        ]
+      },
+      "ExportCustomerFields": {
+        "type": "string",
+        "enum": [
+          "name",
+          "id",
+          "description",
+          "email",
+          "source_id",
+          "created_at",
+          "address_city",
+          "address_state",
+          "address_line_1",
+          "address_line_2",
+          "address_country",
+          "address_postal_code",
+          "redemptions_total_redeemed",
+          "redemptions_total_failed",
+          "redemptions_total_succeeded",
+          "redemptions_total_rolled_back",
+          "redemptions_total_rollback_failed",
+          "redemptions_total_rollback_succeeded",
+          "orders_total_amount",
+          "orders_total_count",
+          "orders_average_amount",
+          "orders_last_order_amount",
+          "orders_last_order_date",
+          "loyalty_points",
+          "loyalty_referred_customers",
+          "updated_at",
+          "phone",
+          "birthday",
+          "metadata",
+          "birthdate"
+        ],
+        "title": "Export Customer Fields"
+      },
+      "ExportCustomerOrder": {
+        "title": "Export Customer Order",
+        "type": "string",
+        "enum": [
+          "name",
+          "-name",
+          "id",
+          "-id",
+          "description",
+          "-description",
+          "email",
+          "-email",
+          "source_id",
+          "-source_id",
+          "created_at",
+          "-created_at",
+          "address_city",
+          "-address_city",
+          "address_state",
+          "-address_state",
+          "address_line_1",
+          "-address_line_1",
+          "address_line_2",
+          "-address_line_2",
+          "address_country",
+          "-address_country",
+          "address_postal_code",
+          "-address_postal_code",
+          "redemptions_total_redeemed",
+          "-redemptions_total_redeemed",
+          "redemptions_total_failed",
+          "-redemptions_total_failed",
+          "redemptions_total_succeeded",
+          "-redemptions_total_succeeded",
+          "redemptions_total_rolled_back",
+          "-redemptions_total_rolled_back",
+          "redemptions_total_rollback_failed",
+          "-redemptions_total_rollback_failed",
+          "redemptions_total_rollback_succeeded",
+          "-redemptions_total_rollback_succeeded",
+          "orders_total_amount",
+          "-orders_total_amount",
+          "orders_total_count",
+          "-orders_total_count",
+          "orders_average_amount",
+          "-orders_average_amount",
+          "orders_last_order_amount",
+          "-orders_last_order_amount",
+          "orders_last_order_date",
+          "-orders_last_order_date",
+          "loyalty_points",
+          "-loyalty_points",
+          "loyalty_referred_customers",
+          "-loyalty_referred_customers",
+          "updated_at",
+          "-updated_at",
+          "phone",
+          "-phone",
+          "birthday",
+          "-birthday",
+          "metadata",
+          "-metadata",
+          "birthdate",
+          "-birthdate"
+        ]
+      },
+      "ExportPublicationFields": {
+        "title": "Export Publication Fields",
+        "type": "string",
+        "enum": [
+          "voucher_code",
+          "customer_id",
+          "customer_source_id",
+          "date",
+          "channel",
+          "campaign",
+          "is_winner",
+          "metadata"
+        ]
+      },
+      "ExportPublicationOrder": {
+        "title": "Export Publication Order",
+        "type": "string",
+        "enum": [
+          "voucher_code",
+          "-voucher_code",
+          "customer_id",
+          "-customer_id",
+          "customer_source_id",
+          "-customer_source_id",
+          "date",
+          "-date",
+          "channel",
+          "-channel",
+          "campaign",
+          "-campaign",
+          "is_winner",
+          "-is_winner",
+          "metadata",
+          "-metadata"
+        ]
+      },
+      "ExportRedemptionFields": {
+        "title": "Export Redemption Fields",
+        "type": "string",
+        "enum": [
+          "id",
+          "object",
+          "date",
+          "voucher_code",
+          "campaign",
+          "promotion_tier_id",
+          "customer_id",
+          "customer_source_id",
+          "customer_name",
+          "tracking_id",
+          "order_amount",
+          "gift_amount",
+          "loyalty_points",
+          "result",
+          "failure_code",
+          "failure_message",
+          "metadata"
+        ]
+      },
+      "ExportRedemptionOrder": {
+        "title": "Export Redemption Order",
+        "type": "string",
+        "enum": [
+          "id",
+          "-id",
+          "object",
+          "-object",
+          "date",
+          "-date",
+          "voucher_code",
+          "-voucher_code",
+          "campaign",
+          "-campaign",
+          "promotion_tier_id",
+          "-promotion_tier_id",
+          "customer_id",
+          "-customer_id",
+          "customer_source_id",
+          "-customer_source_id",
+          "customer_name",
+          "-customer_name",
+          "tracking_id",
+          "-tracking_id",
+          "order_amount",
+          "-order_amount",
+          "gift_amount",
+          "-gift_amount",
+          "loyalty_points",
+          "-loyalty_points",
+          "result",
+          "-result",
+          "failure_code",
+          "-failure_code",
+          "failure_message",
+          "-failure_message",
+          "metadata",
+          "-metadata"
+        ]
+      },
+      "ExportVoucherFields": {
+        "title": "Export Voucher Fields",
+        "type": "string",
+        "enum": [
+          "code",
+          "voucher_type",
+          "value",
+          "discount_type",
+          "campaign",
+          "category",
+          "start_date",
+          "expiration_date",
+          "gift_balance",
+          "loyalty_balance",
+          "redemption_quantity",
+          "redemption_count",
+          "active",
+          "qr_code",
+          "bar_code",
+          "metadata",
+          "id",
+          "is_referral_code",
+          "created_at",
+          "updated_at",
+          "validity_timeframe_interval",
+          "validity_timeframe_duration",
+          "validity_day_of_week",
+          "discount_amount_limit",
+          "campaign_id",
+          "additional_info",
+          "customer_id",
+          "discount_unit_type",
+          "discount_unit_effect",
+          "customer_source_id"
+        ]
+      },
+      "ExportVoucherOrder": {
+        "title": "Export Voucher Order",
+        "type": "string",
+        "enum": [
+          "code",
+          "-code",
+          "voucher_type",
+          "-voucher_type",
+          "value",
+          "-value",
+          "discount_type",
+          "-discount_type",
+          "campaign",
+          "-campaign",
+          "category",
+          "-category",
+          "start_date",
+          "-start_date",
+          "expiration_date",
+          "-expiration_date",
+          "gift_balance",
+          "-gift_balance",
+          "loyalty_balance",
+          "-loyalty_balance",
+          "redemption_quantity",
+          "-redemption_quantity",
+          "redemption_count",
+          "-redemption_count",
+          "active",
+          "-active",
+          "qr_code",
+          "-qr_code",
+          "bar_code",
+          "-bar_code",
+          "metadata",
+          "-metadata",
+          "id",
+          "-id",
+          "is_referral_code",
+          "-is_referral_code",
+          "created_at",
+          "-created_at",
+          "updated_at",
+          "-updated_at",
+          "validity_timeframe_interval",
+          "-validity_timeframe_interval",
+          "validity_timeframe_duration",
+          "-validity_timeframe_duration",
+          "validity_day_of_week",
+          "-validity_day_of_week",
+          "discount_amount_limit",
+          "-discount_amount_limit",
+          "campaign_id",
+          "-campaign_id",
+          "additional_info",
+          "-additional_info",
+          "customer_id",
+          "-customer_id",
+          "discount_unit_type",
+          "-discount_unit_type",
+          "discount_unit_effect",
+          "-discount_unit_effect",
+          "customer_source_id",
+          "-customer_source_id"
+        ]
+      },
+      "ExportOrderFields": {
+        "title": "Export Order Fields",
+        "type": "string",
+        "enum": [
+          "id",
+          "source_id",
+          "created_at",
+          "updated_at",
+          "status",
+          "amount",
+          "discount_amount",
+          "items_discount_amount",
+          "total_discount_amount",
+          "total_amount",
+          "customer_id",
+          "referrer_id",
+          "metadata"
+        ]
+      },
+      "ExportOrderOrder": {
+        "title": "Export Order Order",
+        "type": "string",
+        "enum": [
+          "id",
+          "-id",
+          "source_id",
+          "-source_id",
+          "created_at",
+          "-created_at",
+          "updated_at",
+          "-updated_at",
+          "status",
+          "-status",
+          "amount",
+          "-amount",
+          "discount_amount",
+          "-discount_amount",
+          "items_discount_amount",
+          "-items_discount_amount",
+          "total_discount_amount",
+          "-total_discount_amount",
+          "total_amount",
+          "-total_amount",
+          "customer_id",
+          "-customer_id",
+          "referrer_id",
+          "-referrer_id",
+          "metadata",
+          "-metadata"
+        ]
+      },
+      "ExportPointsExpirationFields": {
+        "title": "Export Points Expiration Fields",
+        "type": "string",
+        "enum": [
+          "id",
+          "campaign_id",
+          "voucher_id",
+          "points",
+          "status",
+          "expires_at"
+        ]
+      },
+      "ExportPointsExpirationOrder": {
+        "title": "Export Points Expiration Order",
+        "type": "string",
+        "enum": [
+          "id",
+          "-id",
+          "campaign_id",
+          "-campaign_id",
+          "voucher_id",
+          "-voucher_id",
+          "points",
+          "-points",
+          "status",
+          "-status",
+          "expires_at",
+          "-expires_at"
+        ]
+      },
+      "ExportVoucherTransactionsFields": {
+        "title": "Export Voucher Transactions Fields",
+        "type": "string",
+        "enum": [
+          "id",
+          "campaign_id",
+          "voucher_id",
+          "type",
+          "source_id",
+          "reason",
+          "source",
+          "balance",
+          "amount",
+          "related_transaction_id",
+          "created_at",
+          "details"
+        ]
+      },
+      "ExportVoucherTransactionsOrder": {
+        "title": "Export Voucher Transactions Order",
+        "type": "string",
+        "enum": [
+          "id",
+          "-id",
+          "campaign_id",
+          "-campaign_id",
+          "voucher_id",
+          "-voucher_id",
+          "type",
+          "-type",
+          "source_id",
+          "-source_id",
+          "reason",
+          "-reason",
+          "source",
+          "-source",
+          "balance",
+          "-balance",
+          "amount",
+          "-amount",
+          "related_transaction_id",
+          "-related_transaction_id",
+          "created_at",
+          "-created_at",
+          "details",
+          "-details"
+        ]
+      },
+      "Any": {
+        "anyOf": [
+          {
+            "title": "array",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "title": "string",
+                  "type": "string"
+                },
+                {
+                  "title": "number",
+                  "type": "number"
+                },
+                {
+                  "title": "object",
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          {
+            "title": "string",
+            "type": "string"
+          },
+          {
+            "title": "number",
+            "type": "number"
+          },
+          {
+            "title": "object",
+            "type": "object"
+          }
+        ],
+        "title": "Any"
+      },
+      "LoyaltiesCreateTiersRequestBody": {
+        "title": "Loyalties Create Tiers Request Body",
+        "x-stoplight": {
+          "id": "i1emmwlaqp7lt"
+        },
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/LoyaltyTierBase"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "description": "The metadata object stores all custom attributes assigned to the loyalty tier. A set of key/value pairs that you can attach to a loyalty tier object. It can be useful for storing additional information about the loyalty tier in a structured format.",
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "LoyaltiesCreateTiersResponseBody": {
+        "title": "Loyalties Create Tiers Response Body",
+        "x-stoplight": {
+          "id": "ix7g5mnuwqsp6"
+        },
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/LoyaltyTier"
+        }
+      },
+      "LoyaltiesGetRewardAssignmentResponseBody": {
+        "$ref": "#/components/schemas/RewardAssignment",
+        "x-stoplight": {
+          "id": "fnbbaq9l1l9it"
+        }
+      },
+      "LoyaltiesGetRewardDetailsResponseBody": {
+        "$ref": "#/components/schemas/Reward",
+        "x-stoplight": {
+          "id": "44hds9u0hhukf"
+        }
+      },
+      "LoyaltiesListTiersRequestQuery": {
+        "title": "Loyalties List Tiers Request Query",
+        "x-stoplight": {
+          "id": "d5sluzqkxu8km"
+        },
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "multipleOf": 100,
+            "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100 items."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Which page of results to return."
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "created_at",
+              "-created_at",
+              "updated_at",
+              "-updated_at"
+            ],
+            "description": "Sorts the results using one of the filtering options, where the dash - preceding a sorting option means sorting in a descending order."
+          }
+        }
+      },
+      "LoyaltiesListLoyaltyTierEarningRulesRequestQuery": {
+        "title": "LoyaltiesListLoyaltyTierEarningRulesRequestQuery",
+        "x-stoplight": {
+          "id": "zs0z1cyyzac9u"
+        },
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "multipleOf": 100,
+            "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100 items."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Which page of results to return."
+          }
+        }
+      },
+      "LoyaltiesGetTierResponseBody": {
+        "$ref": "#/components/schemas/LoyaltyTier",
+        "x-stoplight": {
+          "id": "hzcsijl2b4d5o"
+        }
+      },
+      "LoyaltiesListTiersResponseBody": {
+        "title": "Loyalties List Tiers Response Body",
+        "x-stoplight": {
+          "id": "kw06g2szvv479"
+        },
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The type of object represented by JSON. This object stores information about loyalty tiers in a dictionary."
+          },
+          "data_ref": {
+            "type": "string",
+            "enum": [
+              "data"
+            ],
+            "description": "Identifies the name of the attribute that contains the array of loyalty tier objects."
+          },
+          "data": {
+            "type": "array",
+            "description": "This is an object representing a loyalty tier. Loyalty tiers are used to create a loyalty program with different levels of membership and varied earning rules and rewards based on customer’s tiers.",
+            "items": {
+              "$ref": "#/components/schemas/LoyaltyTier"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of loyalty tier objects."
+          }
+        },
+        "required": [
+          "object",
+          "data_ref",
+          "data",
+          "total"
+        ]
+      },
+      "LoyaltiesListMemberLoyaltyTiersResponseBody": {
+        "title": "Loyalties List Member Loyalty Tiers Response Body",
+        "x-stoplight": {
+          "id": "s3zpgud510xl6"
+        },
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The type of object represented by JSON. This object stores information about loyalty tiers in a dictionary."
+          },
+          "data_ref": {
+            "type": "string",
+            "enum": [
+              "data"
+            ],
+            "description": "Identifies the name of the attribute that contains the array of loyalty tier objects."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoyaltyTier"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of loyalty tier objects."
+          }
+        },
+        "required": [
+          "object",
+          "data_ref",
+          "data",
+          "total"
+        ]
+      },
+      "EarningRule": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/EarningRuleBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "validation_rule_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "A unique validation rule identifier assigned by the Voucherify API. The validation rule is verified before points are added to the balance."
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "Timestamp representing the date and time when the earning rule was last updated in ISO 8601 format."
+              },
+              "active": {
+                "type": "boolean",
+                "description": "A flag to toggle the earning rule on or off. You can disable an earning rule even though it's within the active period defined by the start_date and expiration_date of the campaign or the earning rule's own start_date and expiration_date.\n\n- `true` indicates an active earning rule\n- `false` indicates an inactive earning rule"
+              }
+            },
+            "required": [
+              "validation_rule_id",
+              "updated_at",
+              "active"
+            ]
+          }
+        ]
+      },
+      "LoyaltiesListLoyaltyTierEarningRulesResponseBody": {
+        "title": "Loyalties List Loyalty Tier Earning Rules ResponseBody",
+        "x-stoplight": {
+          "id": "i180zbh3ffwaa"
+        },
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The type of object represented by JSON. This object stores information about earning rules in a dictionary."
+          },
+          "data_ref": {
+            "type": "string",
+            "enum": [
+              "data"
+            ],
+            "description": "Identifies the name of the attribute that contains the array of earning rule objects."
+          },
+          "data": {
+            "type": "array",
+            "description": "Contains array of earning rule objects.",
+            "items": {
+              "$ref": "#/components/schemas/EarningRule"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of earning rule objects."
+          }
+        },
+        "required": [
+          "object",
+          "data_ref",
+          "data",
+          "total"
+        ]
+      },
+      "LoyaltyTierBase": {
+        "title": "Loyalty Tier Base",
+        "x-stoplight": {
+          "id": "3af9422223696"
+        },
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Loyalty Tier name."
+          },
+          "earning_rules": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MappingPoints"
+            },
+            "description": "Contains a list of earning rule IDs and their points mapping for the given earning rule."
+          },
+          "rewards": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MappingPoints"
+            },
+            "description": "Contains a list of reward IDs and their points mapping for the given reward."
+          },
+          "points": {
+            "type": "object",
+            "description": "Defines range of loyalty tier in points.",
+            "properties": {
+              "from": {
+                "type": "integer",
+                "description": "Bottom points threshold value."
+              },
+              "to": {
+                "type": "integer",
+                "description": "Top points threshold value."
+              }
+            }
+          }
+        },
+        "required": [
+          "name",
+          "points"
+        ]
+      },
+      "LoyaltyTier": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/LoyaltyTierBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique loyalty tier ID."
+              },
+              "campaign_id": {
+                "type": "string",
+                "description": "Unique parent campaign ID."
+              },
+              "metadata": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "description": "The metadata object stores all custom attributes assigned to the loyalty tier. A set of key/value pairs that you can attach to a loyalty tier object. It can be useful for storing additional information about the loyalty tier in a structured format."
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp representing the date and time when the loyalty tier was created in ISO 8601 format."
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "Timestamp representing the date and time when the loyalty tier was updated in ISO 8601 format."
+              },
+              "config": {
+                "type": "object",
+                "description": "Defines loyalty tier range in points.",
+                "required": [
+                  "points"
+                ],
+                "properties": {
+                  "points": {
+                    "type": "object",
+                    "description": "Defines range of loyalty tier in points.",
+                    "properties": {
+                      "from": {
+                        "type": "integer",
+                        "description": "Bottom points threshold value."
+                      },
+                      "to": {
+                        "type": "integer",
+                        "description": "Top points threshold value."
+                      }
+                    }
+                  }
+                }
+              },
+              "expiration": {
+                "type": "object",
+                "description": "Defines loyalty tier expiration date.",
+                "properties": {
+                  "customer_id": {
+                    "type": "string"
+                  },
+                  "campaign_id": {
+                    "type": "string"
+                  },
+                  "tier_id": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "expiration_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "customer_id",
+                  "campaign_id",
+                  "tier_id",
+                  "created_at"
+                ]
+              },
+              "object": {
+                "type": "string",
+                "enum": [
+                  "loyalty_tier"
+                ],
+                "description": "The type of object represented by JSON. This object stores information about the loyalty."
+              }
+            },
+            "required": [
+              "id",
+              "campaign_id",
+              "metadata",
+              "created_at",
+              "config",
+              "object"
+            ]
+          }
+        ]
+      },
+      "MappingMultiply": {
+        "title": "MappingMultiply",
+        "x-stoplight": {
+          "id": "7zrwgr2oqh4tj"
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "MULTIPLY"
+            ],
+            "description": "Type of calculation."
+          },
+          "multiplier": {
+            "type": "number",
+            "description": "Multiplication factor used to multiply the points to obtain the mapped points."
+          }
+        }
+      },
+      "MappingFixed": {
+        "title": "MappingFixed",
+        "x-stoplight": {
+          "id": "86eksegayxcxa"
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "CUSTOM"
+            ],
+            "description": "Type of calculation.\n\n"
+          },
+          "points": {
+            "type": "integer",
+            "description": "Fixed number of points to be applied."
+          }
+        }
+      },
+      "MappingPoints": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MappingMultiply"
+          },
+          {
+            "$ref": "#/components/schemas/MappingFixed"
+          }
         ]
       },
       "a_req_importCSV": {
@@ -65235,7 +67458,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoyaltiesAddOrRemoveCardBalanceRequestBody"
+                "$ref": "#/components/schemas/8_req_add_remove_points_balance"
               },
               "examples": {
                 "Add points": {
@@ -65260,7 +67483,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesAddOrRemoveCardBalanceResponseBody"
+                  "$ref": "#/components/schemas/8_res_add_remove_points_balance"
                 },
                 "examples": {
                   "Add balance": {
@@ -65349,7 +67572,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoyaltiesAddOrRemoveCardBalanceRequestBody"
+                "$ref": "#/components/schemas/8_req_add_remove_points_balance"
               },
               "examples": {
                 "Subtract points": {
@@ -65374,7 +67597,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesAddOrRemoveCardBalanceResponseBody"
+                  "$ref": "#/components/schemas/8_res_add_remove_points_balance"
                 },
                 "examples": {
                   "Subtract Points": {
@@ -65458,7 +67681,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoyaltiesTransferPointsRequestBody"
+                "$ref": "#/components/schemas/8_req_transfer_loyalty_points"
               },
               "examples": {
                 "Example": {
@@ -65483,7 +67706,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesTransferPointsResponseBody"
+                  "$ref": "#/components/schemas/8_obj_loyalty_card_object_non_expanded_categories"
                 },
                 "examples": {
                   "Example": {
@@ -65595,7 +67818,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesListCardTransactionsResponseBody"
+                  "$ref": "#/components/schemas/8_res_get_loyalty_card_transactions"
                 },
                 "examples": {
                   "Example": {
@@ -65936,7 +68159,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesListCardTransactionsResponseBody"
+                  "$ref": "#/components/schemas/8_res_get_loyalty_card_transactions"
                 },
                 "examples": {
                   "Example": {
@@ -66269,7 +68492,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoyaltiesExportCardTransactionsRequestBody"
+                "$ref": "#/components/schemas/8_req_create_loyalty_card_transactions_export"
               },
               "examples": {
                 "Example": {
@@ -66302,7 +68525,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesExportCardTransactionsResponseBody"
+                  "$ref": "#/components/schemas/8_obj_export_transactions_object"
                 },
                 "examples": {
                   "Example": {
@@ -66435,7 +68658,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoyaltiesExportCardTransactionsRequestBody"
+                "$ref": "#/components/schemas/8_req_create_loyalty_card_transactions_export"
               },
               "examples": {
                 "Example": {
@@ -66468,7 +68691,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoyaltiesExportCardTransactionsResponseBody"
+                  "$ref": "#/components/schemas/8_obj_export_transactions_object"
                 },
                 "examples": {
                   "Example": {
@@ -69583,7 +71806,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/4_obj_reward_object"
+                  "$ref": "#/components/schemas/LoyaltiesGetRewardDetailsResponseBody"
                 },
                 "examples": {
                   "Material": {
@@ -70116,7 +72339,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/4_obj_reward_assignment_object"
+                  "$ref": "#/components/schemas/LoyaltiesGetRewardAssignmentResponseBody"
                 },
                 "examples": {
                   "Example": {
@@ -72200,7 +74423,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/8_res_list_loyalty_tiers"
+                  "$ref": "#/components/schemas/LoyaltiesListTiersResponseBody"
                 },
                 "examples": {
                   "Example": {
@@ -72323,6 +74546,43 @@
             }
           }
         }
+      },
+      "post": {
+        "operationId": "create-loyalty-tiers",
+        "tags": [
+          "LOYALTIES API"
+        ],
+        "summary": "Create loyalty tiers",
+        "description": "Creates loyalty tiers for desired campaign.",
+        "parameters": [],
+        "security": [
+          {
+            "X-App-Id-1": [],
+            "X-App-Token-1": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns created loyalty tiers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoyaltiesCreateTiersResponseBody"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Provide tier definitions you want to add to existing loyalty campaign.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoyaltiesCreateTiersRequestBody"
+              }
+            }
+          }
+        }
       }
     },
     "/v1/loyalties/{campaignId}/tiers/{tierId}": {
@@ -72368,7 +74628,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/8_obj_loyalty_tier_object"
+                  "$ref": "#/components/schemas/LoyaltyTier"
                 },
                 "examples": {
                   "Example": {
@@ -72458,7 +74718,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/8_res_get_member_loyalty_tier"
+                  "$ref": "#/components/schemas/LoyaltiesListMemberLoyaltyTiersResponseBody"
                 },
                 "examples": {
                   "Example": {
@@ -72581,7 +74841,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/8_res_list_loyalty_tier_earning_rules"
+                  "$ref": "#/components/schemas/LoyaltiesListLoyaltyTierEarningRulesResponseBody"
                 },
                 "examples": {
                   "example-1": {
